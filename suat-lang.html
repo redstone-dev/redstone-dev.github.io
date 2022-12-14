@@ -1,1 +1,31 @@
 
+<h1><code>suat</code> :: a not-so-general-purpose scripting language</h1>
+<p>The name comes from SUper AuTomation.</p>
+<hr>
+<h3>Learn by example</h3>
+<p>Below is all you need to know about <code>suat</code> in a single example file.</p>
+<p>You can run it using the <a href="suat-dl.html"><code>suat</code> compiler</a> and it will compile successfully and run in most <code>std-suat</code>-compliant environments.</p>
+<pre>
+
+; this is a comment.
+; comments need to be on their own line.
+; also, no multiline comments :(
+
+&require $NULL
+
+; variables
+
+var foo = "bar"
+&echo($foo)
+
+; 'var' to declare
+; '$' to reference
+
+@greet [name] ->
+
+; this is a procedure.
+&echo 
+
+end
+
+</pre>
