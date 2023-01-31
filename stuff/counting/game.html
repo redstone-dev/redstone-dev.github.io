@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Counting Game&trade;</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        #cards {
+            display: flex;
+            list-style-type: none;
+        }
+
+        #cards > li {
+            padding: 1em;
+            background-color: rgba(0, 0, 0, 0.5);
+            margin: 1em;
+            border-radius: 0.25em;
+            cursor: pointer;
+            transition: 0.5s ease-in-out;
+        }
+
+        #cards > li:hover {
+            background-color: crimson;
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body onload="setup()">
+    <h1>The Counting Game&trade;</h1>
+    <a href="counting.html">View rules</a>
+    <p># of turns: <b id="turns-display"></b></p>
+    <p>Current card (discard pile): <b id="discard-status">loading...</b></p>
+    
+    <h3>Your Cards</h3>
+    <ul id="cards">
+
+    </ul>
+    <script>
+        var discardPile = [];
+        var playerHand = [];
+        var cpuHand = [];
+
+        var turns = 0;
+
+        // https://stackoverflow.com/a/7228322
+        function randInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        function setup() {
+            discardPile.push(randInt(0, 10));
+
+            for (var i = 1; i < 6; i++) {
+                if (randInt(0,100) < 75) {
+                    playerHand.push(randInt(0, 10))
+                } else {
+                    playerHand.push("Skip")
+                }
+            }
+            update();
+        }
+
+        function playerTurn() {
+
+        }
+
+        function cpuTurn() {
+
+        }
+
+        function globalEndTurn() {
+            turns++;
+            update();
+        }
+
+        function update() {
+            var cardsList = document.getElementById('cards');
+
+            for (const el of cardsList.children) {
+                el.remove()
+            }
+
+            playerHand.sort()
+
+            console.log(playerHand)
+
+            for (const item of playerHand) {
+                let li = document.createElement('li')
+                let text = document.createTextNode(item.toString())
+                li.appendChild(text)
+                li.title = "Click to play " + item
+                li.onclick = function(ev) {
+                    playerHand.splice(playerHand.indexOf(item), 1)
+                    for (const el of cardsList.children) {
+                        el.remove()
+                    }
+                    update()
+                }
+
+                cardsList.appendChild(li)
+            }
+
+            document.querySelector('#turns-display').innerHTML = turns;
+        }
+    </script>
+</body>
+</html>
