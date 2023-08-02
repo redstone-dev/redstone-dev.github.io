@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>ocular reaction generator</title>
+</head>
+<body>
+    <h1>Create ocular Reaction Buttons</h1>
+    <p>With this generator you can add ocular reactions to your Scratch forum posts for people who don't have Scratch Addons.</p>
+    <label>Post ID: <input id="postID" onkeyup="genReaction()"/></label><br />
+    <label>Emoji to use in the reaction (Unicode emoji): <input id="emoji" onkeyup="genReaction()" maxlength="1" /></label><br />
+    <p>BBCode:</p>
+    <textarea id="response" readonly="readonly">Type in the text boxes above to create ocular reactions</textarea>
+    <button onclick="history.back()">Go Back</button>
+
+    <script>
+        function emojiToBBCode(emoji) {
+            switch(emoji) {
+                case '👍':
+                    return '[img=https://assets.scratch.mit.edu/get_image/.%2E/26a731fe60b4825854fb91b3c93632d6.svg]'
+                case '👎':
+                    return '[img=https://assets.scratch.mit.edu/get_image/.%2E/c26b881dea788cca3142f5a267982df6.svg]'
+                case '😄':
+                    return '[img=https://assets.scratch.mit.edu/get_image/.%2E/e5b0c04a1f5858b75e1b51b9a4940b9a.svg]'
+                case '🎉':
+                    return '[img=https://assets.scratch.mit.edu/get_image/.%2E/b20db5fa8a40570f586e4f98a3a8fad6.svg]'
+                case '😕':
+                    return '[img=https://assets.scratch.mit.edu/get_image/.%2E/edd1777c86366f0e6410e37f4503fb02.svg]'
+                case '❤️':
+                    return '[img=https://assets.scratch.mit.edu/get_image/.%2E/9661c9d6f5cbd20397523ebd63bb0362.svg]'
+                case '🚀':
+                    return '(rocket emoji)'
+                case '👀':
+                    return '[img=https://assets.scratch.mit.edu/get_image/.%2E/9455b317d7d5d29cd49b48a034ecaa16.svg]'
+                default:
+                    return '(unknown emoji)'
+            }
+        }
+
+        function genReaction() {
+            //[url=https://ocular.jeffalo.net/react/7417655?emoji=%F0%9F%91%8D][img=https://assets.scratch.mit.edu/get_image/.%2E/26a731fe60b4825854fb91b3c93632d6.svg][/url] [url=https://ocular.jeffalo.net/react/7417655?emoji=%F0%9F%91%8E][img=https://assets.scratch.mit.edu/get_image/.%2E/c26b881dea788cca3142f5a267982df6.svg][/url]
+            var responseEl = document.getElementById("response");
+            var postId = document.getElementById("postID").value;
+            var originalEmoji = document.getElementById("emoji").value;
+            var bbEmoji = emojiToBBCode(document.getElementById("emoji").value);
+
+            responseEl.value = `[url=https://ocular.jeffalo.net/react/${postId}?emoji=${originalEmoji}]${bbEmoji}[/url]`
+
+        }
+        
+    </script>
+</body>
+</html>
