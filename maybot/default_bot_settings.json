@@ -1,0 +1,16 @@
+{
+    "general": {
+        "prefix": "."
+    },
+    "hoi": {
+        "channel_id": 0,
+        "reaction_removal_thresh": 3
+    },
+    "starboard": {
+        "channel_id": 0,
+        "reactions": {
+            "add_thresh": 3,
+            "allowed_emojis": "⭐"
+        }
+    }
+}   
